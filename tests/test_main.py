@@ -13,11 +13,11 @@ def test_user_empty_get():
 
 def test_user_save_and_get():
     s = requests.Session()
-    parameters = "?name=cypermen&authorId=7bd047cb-a57e-412c-9d83-81c50e3e3902"
+    parameters = "?title=cypermen&authorId=7bd047cb-a57e-412c-9d83-81c50e3e3902"
     response = s.post(f'{api}/{parameters}')
     assert response.status_code == 200
-    assert response.json().get('name') == 'cypermen'
+    assert response.json().get('title') == 'cypermen'
     createdBookId = response.json().get('id')
     responseUser = s.get(f'{api}/find/{createdBookId}')
     assert responseUser.status_code == 200
-    assert responseUser.json().get('name') == 'cypermen'
+    assert responseUser.json().get('title') == 'cypermen'

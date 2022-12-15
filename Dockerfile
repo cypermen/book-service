@@ -1,5 +1,11 @@
+FROM gradle:7.6.0-jdk17 AS build
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN gradle bootJar --no-daemon
+
 FROM openjdk:17
-ARG JAR_FILE=./build/libs/book-service-0.0.1-SNAPSHOT.jar
-ADD ${JAR_FILE} book-service-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java", "-jar","book-service-0.0.1-SNAPSHOT.jar"]
 EXPOSE 8081
+RUN mkdir /app
+COPY --from=build /home/gradle/src/build/libs/book-service-0.0.1-SNAPSHOT.jar /app/application.jar
+
+ENTRYPOINT ["java", "-jar", "/app/application.jar"]

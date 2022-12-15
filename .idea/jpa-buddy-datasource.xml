@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="582eaa82-9702-40ce-aeab-bb372f24d2a3" name="book-service" url="jdbc:postgresql://host.docker.internal:5433/book" driverClass="org.postgresql.Driver" />
+    </data-sources>
+  </component>
+</project>

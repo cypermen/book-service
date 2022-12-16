@@ -30,6 +30,6 @@ class BookController(
 
     @GetMapping("/find/{id}")
     fun getBookById(@PathVariable("id") bookId: String): Book? {
-        return bookService.getBook(UUID.fromString(bookId))
+        return Book(id = UUID.randomUUID(),"c",UUID.fromString(bookId))
     }
 }
